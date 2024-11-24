@@ -2,7 +2,6 @@ import { Schema } from 'mongoose';
 import mongoose from 'mongoose';
 
 const Model = new Schema({
-    id: Number,
     model_name: String,
     description: String,
 });

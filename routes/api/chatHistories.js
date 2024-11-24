@@ -15,38 +15,6 @@ router.get("/:id", async (req, res) => {
     else res.json(chatHistory).status(200);
 });
 
-router.post("/", async (req, res) => {
-    try {
-        const newChatHistory = new ChatHistoryModel({
-            id: req.body.id,
-            messages: req.body.messages,
-        });
-        const chatHistory = await newChatHistory.save();
-        res.json(chatHistory).status(201);
-    } catch (err) {
-        console.error(err);
-        res.status(500).send("Error adding record");
-    }
-});
-
-router.patch("/:id", async (req, res) => {
-    try {
-        const query = { _id: ObjectId(req.params.id) };
-        const updates = {
-            $set: {
-                users: req.body.users,
-                messages: req.body.messages,
-            },
-        };
-
-        const chatHistory = await ChatHistoryModel.updateOne(query, updates);
-        res.json(chatHistory).status(200);
-    } catch (err) {
-        console.error(err);
-        res.status(500).send("Error updating record");
-    }
-});
-
 router.delete("/:id", async (req, res) => {
     try {
         const query = { _id: ObjectId(req.params.id) };

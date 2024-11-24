@@ -2,9 +2,8 @@ import { Schema } from 'mongoose';
 import mongoose from 'mongoose';
 
 const ChatHistory = new Schema({
-    id: Number,
-    chat_id: Number,
-    model_id: Number,
+    chat_id: Object,
+    model_id: Object,
     message: String,
     response: String,
     created_at: Date

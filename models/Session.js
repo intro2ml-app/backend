@@ -2,8 +2,7 @@ import { Schema } from 'mongoose';
 import mongoose from 'mongoose';
 
 const Session = new Schema({
-    id: Number,
-    user_id: Number,
+    user_id: Object,
     session_token: String,
     ip_address: String,
     user_agent: String,

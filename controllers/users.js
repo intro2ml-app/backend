@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
-import passport from "passport";
+import passport from "../middleware/auth.js";
 import UserModel from "../models/User.js";
+import Session from "../models/Session.js";
 
 const signup = async (req, res) => {
     const { username, email, password } = req.body;
@@ -16,7 +17,9 @@ const signup = async (req, res) => {
         const user = new UserModel({
             username,
             email,
-            password: hashedPassword,
+            password_hash: hashedPassword,
+            created_at: new Date(),
+            updated_at: new Date(),
         });
 
         await user.save();
@@ -46,7 +49,8 @@ const login = (req, res, next) => {
 
             await Session.updateOne(
                 { user_id: user.id },
-                { ip_address: ipAddress, user_agent: userAgent, updated_at: new Date() }
+                { ip_address: ipAddress, user_agent: userAgent, updated_at: new Date() },
+                { upsert: true }
             );
 
             res.status(200).json({ message: "Login successful", user });

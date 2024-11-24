@@ -1,8 +1,8 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import bcrypt from "bcryptjs";
-import UserModel from "../models/User";
-import SessionModel from "../models/Session";
+import UserModel from "../models/User.js";
+import SessionModel from "../models/Session.js";
 
 passport.use(
     new LocalStrategy(
@@ -13,7 +13,7 @@ passport.use(
                 if (!user) {
                     return done(null, false, { message: "User not found" });
                 }
-                const isValidPassword = await bcrypt.compare(password, user.password);
+                const isValidPassword = await bcrypt.compare(password, user.password_hash);
                 if (!isValidPassword) {
                     return done(null, false, { message: "Invalid password" });
                 }
@@ -44,9 +44,9 @@ passport.serializeUser(async (user, done) => {
     }
 });
 
-passport.deserializeUser(async (id, done) => {
+passport.deserializeUser(async (token, done) => {
     try {
-        const session = await SessionModel.findOne({ session_token: sessionToken });
+        const session = await SessionModel.findOne({ session_token: token });
         if (!session) {
             return done(new Error("Session not found"));
         }
@@ -61,3 +61,5 @@ passport.deserializeUser(async (id, done) => {
         done(err);
     }
 });
+
+export default passport;
