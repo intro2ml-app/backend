@@ -18,7 +18,6 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
     try {
         const newModel = new ModelModel({
-            id: ObjectId(req.body.id),
             model_name: req.body.model_name,
             description: req.body.description,
         });
@@ -32,7 +31,7 @@ router.post("/", async (req, res) => {
 
 router.patch("/:id", async (req, res) => {
     try {
-        const query = { _id: req.params.id };
+        const query = { _id: ObjectId(req.params.id) };
         const updates = {
             $set: {
                 model_name: req.body.model_name,
@@ -50,7 +49,7 @@ router.patch("/:id", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
     try {
-        const query = { _id: req.params.id };
+        const query = { _id: ObjectId(req.params.id) };
         const model = await ModelModel.deleteOne(query);
         res.json(model).status(200);
     } catch (err) {
