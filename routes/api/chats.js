@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-    const chat = await ChatModel.find({ user_id: req.params.id });
+    const chat = await ChatModel.find({ _id: req.params.id });
     if (!chat) res.send("Not found").status(404);
     else res.json(chat).status(200);
 });
