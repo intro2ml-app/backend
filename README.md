@@ -24,13 +24,36 @@ npm start
 - `/api`
     - `/users`
         - `POST /register`: Register a new user
+            - Request body:
+                ```json
+                {
+                    "username": "username",
+                    "email": "email",
+                    "password": "password"
+                }
+                ```
         - `POST /login`: Login a user
-        - `POST /logout`: Logout a user
+            - Request body:
+                ```json
+                {
+                    "email": "email",
+                    "password": "password"
+                }
+                ```
+        - `GET /logout`: Logout a user
         - `GET /me`: Get the current user
     - `/chats`
         - `GET /`: Get all chats
         - `GET /:id`: Get a chat by id
         - `POST /`: Create a new chat
+            - Request body:
+                ```json
+                {
+                    "user_id": "user_id",
+                    "model_id": "model_id",
+                    "message": "message"
+                }
+                ```
         - `DELETE /:id`: Delete a chat by id
     - `/chatHistories`
         - `GET /`: Get all chats
@@ -40,5 +63,12 @@ npm start
         - `GET /`: Get all models
         - `GET /:id`: Get a model by id
         - `POST /`: Create a new model
+            - Request body:
+                ```json
+                {
+                    "name": "name",
+                    "description": "description",
+                }
+                ```
         - `PATCH /:id`: Update a model by id
         - `DELETE /:id`: Delete a model by id
