@@ -58,6 +58,15 @@ npm start
     - `/chatHistories`
         - `GET /`: Get all chats
         - `GET /:id`: Get chat history by chat id
+        - `POST /`: Create a new chat history
+            - Request body:
+                ```json
+                {
+                    "chat_id": "chat_id",
+                    "user_id": "user_id",
+                    "message": "message"
+                }
+                ```
         - `DELETE /:id`: Delete a chat history by id
     - `/models`
         - `GET /`: Get all models
