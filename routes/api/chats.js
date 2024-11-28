@@ -1,6 +1,5 @@
 import express from "express";
 import ChatModel from "../../models/Chat";
-import { ObjectId } from "mongodb";
 
 const router = express.Router();
 
@@ -10,7 +9,7 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-    const chat = await ChatModel.find({ _id: ObjectId(req.params.id) });
+    const chat = await ChatModel.find({ _id: req.params.id });
     if (!chat) res.send("Not found").status(404);
     else res.json(chat).status(200);
 });
@@ -33,7 +32,7 @@ router.post("/", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
     try {
-        const query = { _id: ObjectId(req.params.id) };
+        const query = { _id: req.params.id };
         const chat = await ChatModel.deleteOne(query);
         res.json(chat).status(200);
     } catch (err) {

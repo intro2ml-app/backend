@@ -1,6 +1,5 @@
 import express from "express";
 import ModelModel from "../../models/Model.js";
-import { ObjectId } from "mongodb";
 
 const router = express.Router();
 
@@ -10,7 +9,7 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-    const model = await ModelModel.find({ _id: ObjectId(req.params.id) });
+    const model = await ModelModel.find({ _id: req.params.id });
     if (!model) res.send("Not found").status(404);
     else res.json(model).status(200);
 });
@@ -31,7 +30,7 @@ router.post("/", async (req, res) => {
 
 router.patch("/:id", async (req, res) => {
     try {
-        const query = { _id: ObjectId(req.params.id) };
+        const query = { _id: req.params.id };
         const updates = {
             $set: {
                 model_name: req.body.model_name,
@@ -49,7 +48,7 @@ router.patch("/:id", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
     try {
-        const query = { _id: ObjectId(req.params.id) };
+        const query = { _id: req.params.id };
         const model = await ModelModel.deleteOne(query);
         res.json(model).status(200);
     } catch (err) {
