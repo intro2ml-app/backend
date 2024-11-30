@@ -7,7 +7,11 @@ router.post("/register", signup);
 router.post("/login", login);
 router.get("/logout", logout);
 router.get("/me", (req, res) => {
-    res.send(req.user);
+    if (req.isAuthenticated()) {
+        res.json(req.user).status(200);
+    } else {
+        res.status(401).send("Unauthorized");
+    }
 });
 
 export default router;

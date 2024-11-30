@@ -41,10 +41,60 @@ npm start
                 }
                 ```
         - `GET /logout`: Logout a user
+            - Status code: 200 if successful or 500 if failed
+            - Response body:
+                ```json
+                {
+                    "message": "Logged out" or "Failed to logout"
+                }
+                ```
         - `GET /me`: Get the current user
+            - Status code: 200 if successful or 500 if failed
+            - Response body:
+                ```json
+                {
+                    "user": {
+                        "_id": "id",
+                        "username": "username",
+                        "email": "email",
+                        "password_hash": "password_hash",
+                        "created_at": "created_at",
+                        "updated_at": "updated_at",
+                        "__v": 0
+                    }
+                }
+                ```
     - `/chats`
         - `GET /`: Get all chats
+            - Status code: 200
+            - Response body:
+                ```json
+                {
+                    "chats": [
+                        {
+                            "_id": "id",
+                            "user_id": "user_id",
+                            "created_at": "created_at",
+                            "updated_at": "updated_at",
+                            "__v": 0
+                        }
+                    ]
+                }
+                ```
         - `GET /:id`: Get a chat by id
+            - Status code: 200 if successful or 404 if not found
+            - Response body:
+                ```json
+                {
+                    "chat": {
+                        "_id": "id",
+                        "user_id": "user_id",
+                        "created_at": "created_at",
+                        "updated_at": "updated_at",
+                        "__v": 0
+                    }
+                }
+                ```
         - `POST /`: Create a new chat
             - Request body:
                 ```json
@@ -57,7 +107,39 @@ npm start
         - `DELETE /:id`: Delete a chat by id
     - `/chatHistories`
         - `GET /`: Get all chats
+            - Status code: 200
+            - Response body:
+                ```json
+                {
+                    "chatHistories": [
+                        {
+                            "_id": "id",
+                            "chat_id": "chat_id",
+                            "model_id": "model_id",
+                            "message": "message",
+                            "response": "response",
+                            "created_at": "created_at",
+                            "__v": 0
+                        }
+                    ]
+                }
+                ```
         - `GET /:id`: Get chat history by chat id
+            - Status code: 200 if successful or 404 if not found
+            - Response body:
+                ```json
+                {
+                    "chatHistory": {
+                        "_id": "id",
+                        "chat_id": "chat_id",
+                        "model_id": "model_id",
+                        "message": "message",
+                        "response": "response",
+                        "created_at": "created_at",
+                        "__v": 0
+                    }
+                }
+                ```
         - `POST /`: Create a new chat history
             - Request body:
                 ```json
@@ -70,7 +152,33 @@ npm start
         - `DELETE /:id`: Delete a chat history by id
     - `/models`
         - `GET /`: Get all models
+            - Status code: 200
+            - Response body:
+                ```json
+                {
+                    "models": [
+                        {
+                            "_id": "id",
+                            "model_name": "model_name",
+                            "description": "description",
+                            "__v": 0
+                        }
+                    ]
+                }
+                ```
         - `GET /:id`: Get a model by id
+            - Status code: 200 if successful or 404 if not found
+            - Response body:
+                ```json
+                {
+                    "model": {
+                        "_id": "id",
+                        "model_name": "model_name",
+                        "description": "description",
+                        "__v": 0
+                    }
+                }
+                ```
         - `POST /`: Create a new model
             - Request body:
                 ```json
