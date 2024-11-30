@@ -1,5 +1,5 @@
-import ChatHistoryModel from "../models/ChatHistory";
-import ChatModel from "../models/Chat";
+import ChatHistoryModel from "../models/ChatHistory.js";
+import ChatModel from "../models/Chat.js";
 
 const getChats = async (req, res) => {
     const chatHistories = await ChatHistoryModel.find({ user_id: req.user._id });
