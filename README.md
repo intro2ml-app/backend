@@ -65,7 +65,7 @@ npm start
                 }
                 ```
     - `/chats`
-        - `GET /`: Get all chats
+        - `GET /:userId`: Get all chats of current user
             - Status code: 200
             - Response body:
                 ```json
@@ -106,7 +106,7 @@ npm start
                 ```
         - `DELETE /:id`: Delete a chat by id
     - `/chatHistories`
-        - `GET /`: Get all chats
+        - `GET /:chatId`: Get all chats' messages by chat id
             - Status code: 200
             - Response body:
                 ```json
