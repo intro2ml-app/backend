@@ -3,8 +3,8 @@ import ChatModel from "../../models/Chat.js";
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
-    const chats = await ChatModel.find();
+router.get("/:userId", async (req, res) => {
+    const chats = await ChatModel.find({ user_id: req.params.userId });
     res.json(chats).status(200);
 });
 
