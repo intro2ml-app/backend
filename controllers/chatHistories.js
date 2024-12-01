@@ -14,11 +14,13 @@ const getChat = async (req, res) => {
 
 const addChat = async (req, res) => {
     try {
+        const response = fetch(`http://127.0.0.1:8000/${req.body.message}`)
+
         const newChat = new ChatHistoryModel({
             chat_id: req.body.chat_id,
             model_id: req.body.model_id,
             message: req.body.message,
-            response: "",
+            response: response,
             created_at: new Date()
         });
 
