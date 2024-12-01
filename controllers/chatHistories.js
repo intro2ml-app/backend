@@ -2,7 +2,7 @@ import ChatHistoryModel from "../models/ChatHistory.js";
 import ChatModel from "../models/Chat.js";
 
 const getChats = async (req, res) => {
-    const chatHistories = await ChatHistoryModel.find({ user_id: req.user._id });
+    const chatHistories = await ChatHistoryModel.find({ chat_id: req.params.chatId });
     res.json(chatHistories).status(200);
 }
 

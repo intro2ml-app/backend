@@ -3,7 +3,7 @@ import { addChat, deleteChat, getChat, getChats } from "../../controllers/chatHi
 
 const router = express.Router();
 
-router.get("/", getChats);
+router.get("/:chatId", getChats);
 router.get("/:id", getChat);
 router.post("/", addChat);
 router.delete("/:id", deleteChat);
