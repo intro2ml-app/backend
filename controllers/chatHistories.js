@@ -15,7 +15,7 @@ const getChat = async (req, res) => {
 
 const addChat = async (req, res) => {
     try {
-        const response = fetch("http://127.0.0.1:8000/query",
+        const response = await fetch("http://127.0.0.1:8000/query",
             {
                 method: "POST",
                 headers: {
