@@ -1,5 +1,6 @@
 import ChatHistoryModel from "../models/ChatHistory.js";
 import ChatModel from "../models/Chat.js";
+import { query } from "express";
 
 const getChats = async (req, res) => {
     const chatHistories = await ChatHistoryModel.find({ chat_id: req.params.chatId });
@@ -14,7 +15,15 @@ const getChat = async (req, res) => {
 
 const addChat = async (req, res) => {
     try {
-        const response = fetch(`http://127.0.0.1:8000/${req.body.message}`)
+        const response = fetch("http://127.0.0.1:8000/query",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ query: req.body.message })
+            }
+        );
 
         const newChat = new ChatHistoryModel({
             chat_id: req.body.chat_id,
