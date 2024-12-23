@@ -146,7 +146,8 @@ npm start
                 {
                     "chat_id": "chat_id",
                     "user_id": "user_id",
-                    "message": "message"
+                    "message": "message",
+                    "stream": true | false | null (optional)
                 }
                 ```
         - `DELETE /:id`: Delete a chat history by id

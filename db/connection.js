@@ -3,7 +3,7 @@ import chalk from "chalk";
 
 const uri = process.env.ATLAS_URI || "";
 
-async function connect() {
+async function connectDB() {
     await mongoose
         .connect(uri, {serverSelectionTimeoutMS: 5000})
         .then(() => {
@@ -14,4 +14,4 @@ async function connect() {
         });
 }
 
-export default connect;
+export default connectDB;

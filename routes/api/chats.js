@@ -8,11 +8,11 @@ router.get("/:userId", async (req, res) => {
     res.json(chats).status(200);
 });
 
-router.get("/:id", async (req, res) => {
-    const chat = await ChatModel.find({ _id: req.params.id });
-    if (!chat) res.send("Not found").status(404);
-    else res.json(chat).status(200);
-});
+// router.get("/:id", async (req, res) => {
+//     const chat = await ChatModel.find({ _id: req.params.id });
+//     if (!chat) res.send("Not found").status(404);
+//     else res.json(chat).status(200);
+// });
 
 router.post("/", async (req, res) => {
     try {

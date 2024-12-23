@@ -1,6 +1,6 @@
 import ChatHistoryModel from "../models/ChatHistory.js";
 import ChatModel from "../models/Chat.js";
-import { query } from "express";
+import ModelModel from "../models/Model.js";
 
 const getChats = async (req, res) => {
     const chatHistories = await ChatHistoryModel.find({ chat_id: req.params.chatId });
@@ -15,13 +15,22 @@ const getChat = async (req, res) => {
 
 const addChat = async (req, res) => {
     try {
+        const model = await ModelModel.findOne({ _id: req.body.model_id });
+
         const response = await fetch("http://127.0.0.1:8000/query",
             {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ query: req.body.message })
+                body: JSON.stringify({
+                    query: req.body.message,
+                    model: model.model_name,
+                    temperature: 0.7,
+                    top_p: 0.9,
+                    max_tokens: 100,
+                    stream: req.body.stream || false,
+                })
             }
         );
 

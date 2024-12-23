@@ -5,6 +5,7 @@ import connectDB from "./db/connection.js";
 import session from "express-session";
 import bodyParser from "body-parser";
 import passport from "passport";
+import initModels from "./db/model_init.js";
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -13,8 +14,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Connect to MongoDB
+// Connect to MongoDB and initialize models database
 connectDB();
+initModels();
+
+// Initialize passport, session management
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -23,6 +27,8 @@ app.use(session({
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Use the routes defined in the routes folder
 app.use(routes);
 
 // Start the Express server and store the HTTP server instance
