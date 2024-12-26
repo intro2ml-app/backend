@@ -10,7 +10,7 @@ const models = [
         best_for: "General-purpose conversational AI, code generation, complex reasoning, and content creation",
         use_case: "Build a chatbot, generate code, write articles, and more",
         knowledge_cutoff: new Date("2023-10-01"),
-        rate_limit: NaN
+        rate_limit: null
     },
     {
         model_name: "gpt-4o-mini",
@@ -150,7 +150,7 @@ const models = [
         best_for: "Advanced reasoning, fine-tuned domain-specific applications, and scaling across multiple tasks",
         use_case: "Build enterprise AI applications, train custom models, research, and more",
         knowledge_cutoff: new Date("2023-12-31"),
-        rate_limit: NaN
+        rate_limit: null
     },
     {
         model_name: "meta-llama/Llama-3.3-70B-Instruct",
@@ -160,7 +160,7 @@ const models = [
         best_for: "Advanced reasoning, fine-tuned domain-specific applications, and scaling across multiple tasks",
         use_case: "Build enterprise AI applications, train custom models, research, and more",
         knowledge_cutoff: new Date("2023-12-31"),
-        rate_limit: NaN
+        rate_limit: null
     },
     {
         model_name: "Meta-Llama-3.3-70B-Instruct",
@@ -170,7 +170,7 @@ const models = [
         best_for: "Advanced reasoning, fine-tuned domain-specific applications, and scaling across multiple tasks",
         use_case: "Build enterprise AI applications, train custom models, research, and more",
         knowledge_cutoff: new Date("2023-12-31"),
-        rate_limit: NaN
+        rate_limit: null
     },
     {
         model_name: "Mistral-Nemo",
@@ -210,7 +210,7 @@ const models = [
         best_for: "High-parallelism inference tasks and distributed AI workloads",
         use_case: "Solution requiring high-parallelism, applications requiring seamless scaling, DPO workflows, and more",
         knowledge_cutoff: new Date("2021-08-31"),
-        rate_limit: NaN
+        rate_limit: null
     },
     {
         model_name: "Mixtral-8x7B-Instruct-v0.1",
@@ -220,7 +220,7 @@ const models = [
         best_for: "High-parallelism inference tasks and distributed AI workloads",
         use_case: "Solution requiring high-parallelism, applications requiring seamless scaling, DPO workflows, and more",
         knowledge_cutoff: new Date("2023-12-31"),
-        rate_limit: NaN
+        rate_limit: null
     },
     {
         model_name: "Mixtral-8x22B-Instruct-v0.1",
@@ -230,7 +230,7 @@ const models = [
         best_for: "High-parallelism inference tasks and distributed AI workloads",
         use_case: "Solution requiring high-parallelism, applications requiring seamless scaling, DPO workflows, and more",
         knowledge_cutoff: new Date("2021-09-31"),
-        rate_limit: NaN
+        rate_limit: null
     },
     {
         model_name: "Nous-Hermes-2-Mixtral-8x7B-DPO",
@@ -240,7 +240,7 @@ const models = [
         best_for: "High-parallelism inference tasks and distributed AI workloads",
         use_case: "Solution requiring high-parallelism, applications requiring seamless scaling, DPO workflows, and more",
         knowledge_cutoff: new Date("2023-12-31"),
-        rate_limit: NaN
+        rate_limit: null
     },
     {
         model_name: "Qwen2-72B-Instruct",
@@ -250,7 +250,7 @@ const models = [
         best_for: "High-complexity reasoning, coding, and multi-modal learning",
         use_case: "Build AI tools, large-scale virtual assistants, implement cutting-edge intruction-based AI applications, and more",
         knowledge_cutoff: new Date("2023-12-31"),
-        rate_limit: NaN
+        rate_limit: null
     },
     {
         model_name: "QwQ-32B-Preview",
@@ -260,7 +260,7 @@ const models = [
         best_for: "High-complexity reasoning, coding, and multi-modal learning",
         use_case: "Build AI tools, large-scale virtual assistants, implement cutting-edge intruction-based AI applications, and more",
         knowledge_cutoff: new Date("2024-11-28"),
-        rate_limit: NaN
+        rate_limit: null
     },
     {
         model_name: "Qwen2.5-Coder-32B-Instruct",
@@ -270,7 +270,7 @@ const models = [
         best_for: "High-complexity reasoning, coding, and multi-modal learning",
         use_case: "Build AI tools, large-scale virtual assistants, implement cutting-edge intruction-based AI applications, and more",
         knowledge_cutoff: new Date("2024-03-31"),
-        rate_limit: NaN
+        rate_limit: null
     },
     {
         model_name: "Qwen2.5-72B-Instruct",
@@ -280,7 +280,7 @@ const models = [
         best_for: "High-complexity reasoning, coding, and multi-modal learning",
         use_case: "Build AI tools, large-scale virtual assistants, implement cutting-edge intruction-based AI applications, and more",
         knowledge_cutoff: new Date("2024-09-19"),
-        rate_limit: NaN
+        rate_limit: null
     },
     {
         model_name: "gemma-2-9b-it",
@@ -290,7 +290,7 @@ const models = [
         best_for: "Italian language processing, multilingual tasks, and lightweight AI solutions",
         use_case: "Build AI solutions for Italian language, multilingual applications, optimize NLP tasks in European languages, and more",
         knowledge_cutoff: new Date("2024-06-27"),
-        rate_limit: NaN
+        rate_limit: null
     },
     {
         model_name: "gemma-2-27b-it",
@@ -300,7 +300,7 @@ const models = [
         best_for: "Italian language processing, multilingual tasks, and lightweight AI solutions",
         use_case: "Build AI solutions for Italian language, multilingual applications, optimize NLP tasks in European languages, and more",
         knowledge_cutoff: new Date("2024-06-27"),
-        rate_limit: NaN
+        rate_limit: null
     }
 ];
 
