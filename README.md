@@ -81,27 +81,11 @@ npm start
                     ]
                 }
                 ```
-        - `GET /:id`: Get a chat by id
-            - Status code: 200 if successful or 404 if not found
-            - Response body:
-                ```json
-                {
-                    "chat": {
-                        "_id": "id",
-                        "user_id": "user_id",
-                        "created_at": "created_at",
-                        "updated_at": "updated_at",
-                        "__v": 0
-                    }
-                }
-                ```
         - `POST /`: Create a new chat
             - Request body:
                 ```json
                 {
-                    "user_id": "user_id",
-                    "model_id": "model_id",
-                    "message": "message"
+                    "user_id": "user_id"
                 }
                 ```
         - `DELETE /:id`: Delete a chat by id
@@ -124,28 +108,12 @@ npm start
                     ]
                 }
                 ```
-        - `GET /:id`: Get chat history by chat id
-            - Status code: 200 if successful or 404 if not found
-            - Response body:
-                ```json
-                {
-                    "chatHistory": {
-                        "_id": "id",
-                        "chat_id": "chat_id",
-                        "model_id": "model_id",
-                        "message": "message",
-                        "response": "response",
-                        "created_at": "created_at",
-                        "__v": 0
-                    }
-                }
-                ```
         - `POST /`: Create a new chat history
             - Request body:
                 ```json
                 {
                     "chat_id": "chat_id",
-                    "user_id": "user_id",
+                    "model_id": "user_id",
                     "message": "message",
                     "stream": true | false | null (optional)
                 }
@@ -161,31 +129,30 @@ npm start
                         {
                             "_id": "id",
                             "model_name": "model_name",
-                            "description": "description",
+                            "service": "service",
+                            "input_limit": "input_limit",
+                            "output_limit": "output_limit",
+                            "best_for": "best_for",
+                            "use_case": "use_case",
+                            "knowledge_cutoff": "knowledge_cutoff",
+                            "rate_limit": "rate_limit",
                             "__v": 0
                         }
                     ]
-                }
-                ```
-        - `GET /:id`: Get a model by id
-            - Status code: 200 if successful or 404 if not found
-            - Response body:
-                ```json
-                {
-                    "model": {
-                        "_id": "id",
-                        "model_name": "model_name",
-                        "description": "description",
-                        "__v": 0
-                    }
                 }
                 ```
         - `POST /`: Create a new model
             - Request body:
                 ```json
                 {
-                    "name": "name",
-                    "description": "description",
+                    "model_name": "model_name",
+                    "service": "service",
+                    "input_limit": "input_limit",
+                    "output_limit": "output_limit",
+                    "best_for": "best_for",
+                    "use_case": "use_case",
+                    "knowledge_cutoff": "knowledge_cutoff",
+                    "rate_limit": "rate_limit"
                 }
                 ```
         - `PATCH /:id`: Update a model by id

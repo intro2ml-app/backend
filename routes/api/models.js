@@ -8,17 +8,23 @@ router.get("/", async (req, res) => {
     res.json(models).status(200);
 });
 
-router.get("/:id", async (req, res) => {
-    const model = await ModelModel.find({ _id: req.params.id });
-    if (!model) res.send("Not found").status(404);
-    else res.json(model).status(200);
-});
+// router.get("/:id", async (req, res) => {
+//     const model = await ModelModel.find({ _id: req.params.id });
+//     if (!model) res.send("Not found").status(404);
+//     else res.json(model).status(200);
+// });
 
 router.post("/", async (req, res) => {
     try {
         const newModel = new ModelModel({
             model_name: req.body.model_name,
-            description: req.body.description,
+            service: req.body.service,
+            input_limit: req.body.input_limit,
+            output_limit: req.body.output_limit,
+            best_for: req.body.best_for,
+            use_case: req.body.use_case,
+            knowledge_cutoff: req.body.knowledge_cutoff,
+            rate_limit: req.body.rate_limit,
         });
         const model = await newModel.save();
         res.json(model).status(201);
@@ -34,7 +40,13 @@ router.patch("/:id", async (req, res) => {
         const updates = {
             $set: {
                 model_name: req.body.model_name,
-                description: req.body.description,
+                service: req.body.service,
+                input_limit: req.body.input_limit,
+                output_limit: req.body.output_limit,
+                best_for: req.body.best_for,
+                use_case: req.body.use_case,
+                knowledge_cutoff: req.body.knowledge_cutoff,
+                rate_limit: req.body.rate_limit,
             },
         };
 
