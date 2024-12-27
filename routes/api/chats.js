@@ -25,8 +25,8 @@ router.post("/", async (req, res) => {
         await newChat.save();
         res.json(newChat).status(201);
     } catch (err) {
-        console.error(err);
-        res.status(500).send("Error adding record");
+        console.error("Error adding chat");
+        res.status(500).send("Error adding chat");
     }
 });
 
@@ -36,8 +36,8 @@ router.delete("/:id", async (req, res) => {
         const chat = await ChatModel.deleteOne(query);
         res.json(chat).status(200);
     } catch (err) {
-        console.error(err);
-        res.status(500).send("Error deleting record");
+        console.error("Error deleting chat");
+        res.status(500).send("Error deleting chat");
     }
 });
 

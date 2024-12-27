@@ -309,7 +309,7 @@ async function initModels() {
         await ModelModel.insertMany(models);
         console.log("Models initialized successfully");
     } catch (err) {
-        console.error(err);
+        console.error("Models already initialized");
     }
 };
 

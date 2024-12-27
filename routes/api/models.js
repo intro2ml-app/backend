@@ -29,8 +29,8 @@ router.post("/", async (req, res) => {
         const model = await newModel.save();
         res.json(model).status(201);
     } catch (err) {
-        console.error(err);
-        res.status(500).send("Error adding record");
+        console.error("Error adding model");
+        res.status(500).send("Error adding model");
     }
 });
 
@@ -53,8 +53,8 @@ router.patch("/:id", async (req, res) => {
         const model = await ModelModel.updateOne(query, updates);
         res.json(model).status(200);
     } catch (err) {
-        console.error(err);
-        res.status(500).send("Error updating record");
+        console.error("Error updating model");
+        res.status(500).send("Error updating model");
     }
 });
 
@@ -64,8 +64,8 @@ router.delete("/:id", async (req, res) => {
         const model = await ModelModel.deleteOne(query);
         res.json(model).status(200);
     } catch (err) {
-        console.error(err);
-        res.status(500).send("Error deleting record");
+        console.error("Error deleting model");
+        res.status(500).send("Error deleting model");
     }
 });
 

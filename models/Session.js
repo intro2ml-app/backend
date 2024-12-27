@@ -2,12 +2,32 @@ import { Schema } from 'mongoose';
 import mongoose from 'mongoose';
 
 const Session = new Schema({
-    user_id: Object,
-    session_token: String,
-    ip_address: String,
-    user_agent: String,
-    created_at: Date,
-    updated_at: Date
+    user_id: {
+        type: Schema.Types.ObjectId,
+        required: true
+    },
+    session_token: {
+        type: Schema.Types.String,
+        required: true
+    },
+    ip_address: {
+        type: Schema.Types.String,
+        required: true
+    },
+    user_agent: {
+        type: Schema.Types.String,
+        required: true
+    },
+    created_at: {
+        type: Schema.Types.Date,
+        required: true,
+        default: Date.now
+    },
+    updated_at: {
+        type: Schema.Types.Date,
+        required: true,
+        default: Date.now
+    }
 });
 
 const SessionModel = mongoose.model('Sessions', Session);

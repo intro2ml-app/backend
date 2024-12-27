@@ -1,6 +1,7 @@
 import ChatHistoryModel from "../models/ChatHistory.js";
 import ChatModel from "../models/Chat.js";
 import ModelModel from "../models/Model.js";
+import { generatingChatName } from "./chats.js";
 
 const getChats = async (req, res) => {
     const chatHistories = await ChatHistoryModel.find({ chat_id: req.params.chatId });
@@ -34,6 +35,8 @@ const addChat = async (req, res) => {
             }
         );
 
+        generatingChatName(req.body.chat_id, req.body.message);
+
         const newChat = new ChatHistoryModel({
             chat_id: req.body.chat_id,
             model_id: req.body.model_id,
@@ -46,8 +49,8 @@ const addChat = async (req, res) => {
         const chat = await newChat.save();
         res.json(chat).status(201);
     } catch (err) {
-        console.error(err);
-        res.status(500).send("Error adding record");
+        console.error("Error adding message");
+        res.status(500).send("Error adding message");
     }
 }
 
@@ -57,8 +60,8 @@ const deleteChat = async (req, res) => {
         const chat = await ChatHistoryModel.deleteOne(query);
         res.json(chat).status(200);
     } catch (err) {
-        console.error(err);
-        res.status(500).send("Error deleting record");
+        console.error("Error deleting message");
+        res.status(500).send("Error deleting message");
     }
 }
 

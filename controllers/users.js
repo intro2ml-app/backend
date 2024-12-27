@@ -25,7 +25,7 @@ const signup = async (req, res) => {
         await user.save();
         res.status(200).json({ message: "Signup successful", user });
     } catch (err) {
-        console.error(err);
+        console.error("Error signing up");
         res.status(500).send("Error signing up");
     }
 };
@@ -71,7 +71,7 @@ const logout = async (req, res) => {
             res.status(200).send("Logged out");
         });
     } catch (err) {
-        console.error(err);
+        console.error("Error logging out");
         res.status(500).send("Error logging out");
     }
 };
