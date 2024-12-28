@@ -18,6 +18,7 @@ const addChat = async (req, res) => {
     try {
         const model = await ModelModel.findOne({ _id: req.body.model_id });
 
+        const stream = req.body.stream || false;
         const response = await fetch("http://127.0.0.1:8000/query",
             {
                 method: "POST",
@@ -30,24 +31,51 @@ const addChat = async (req, res) => {
                     temperature: 0.7,
                     top_p: 0.9,
                     max_tokens: 100,
-                    stream: req.body.stream || false,
+                    stream: stream,
                 })
             }
         );
 
         generatingChatName(req.body.chat_id, req.body.message);
 
-        const newChat = new ChatHistoryModel({
-            chat_id: req.body.chat_id,
-            model_id: req.body.model_id,
-            message: req.body.message,
-            response: response,
-            created_at: new Date()
-        });
-
-        await ChatModel.updateOne({ _id: req.body.chat_id }, { updated_at: new Date() });
-        const chat = await newChat.save();
-        res.json(chat).status(201);
+        if (stream) {
+            res.setHeader('Content-Type', 'text/plain');
+            let fullResponse = "";
+            // Stream the response as it arrives
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder("utf-8");
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+                const chunk = decoder.decode(value, { stream: true });
+                fullResponse += chunk;
+                // Send chunk to the client
+                res.write(chunk);
+            }
+            res.end();
+            // Save the complete response after streaming
+            const newChat = new ChatHistoryModel({
+                chat_id: req.body.chat_id,
+                model_id: req.body.model_id,
+                message: req.body.message,
+                response: fullResponse,
+                created_at: new Date(),
+            });
+            await ChatModel.updateOne({ _id: req.body.chat_id }, { updated_at: new Date() });
+            await newChat.save();
+        } else {
+            const responseData = await response.json();
+            const newChat = new ChatHistoryModel({
+                chat_id: req.body.chat_id,
+                model_id: req.body.model_id,
+                message: req.body.message,
+                response: responseData.response,
+                created_at: new Date(),
+            });
+            await ChatModel.updateOne({ _id: req.body.chat_id }, { updated_at: new Date() });
+            const chat = await newChat.save();
+            res.json(chat).status(201);
+        }
     } catch (err) {
         console.error("Error adding message");
         res.status(500).send("Error adding message");
