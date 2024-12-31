@@ -17,7 +17,7 @@ export const generatingChatName = async (chat_id, message) => {
             })
         });
         const update = {
-            chat_name: suggestedName,
+            chat_name: suggestedName.json().response,
             updated_at: new Date()
         };
         await ChatModel.updateOne(query, update);
