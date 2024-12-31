@@ -9,7 +9,7 @@ const Chat = new Schema({
     chat_name: {
         type: Schema.Types.String,
         required: true,
-        default: ""
+        default: "New chat"
     },
     updated_at: {
         type: Schema.Types.Date,
