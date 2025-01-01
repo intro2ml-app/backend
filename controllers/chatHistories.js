@@ -4,14 +4,20 @@ import ModelModel from "../models/Model.js";
 import { generatingChatName } from "./chats.js";
 
 const getChats = async (req, res) => {
-    const chatHistories = await ChatHistoryModel.find({ chat_id: req.params.chatId });
-    res.json(chatHistories).status(200);
-}
-
-const getChat = async (req, res) => {
-    const chatHistory = await ChatHistoryModel.find({ _id: req.params.id });
-    if (!chatHistory) res.send("Not found").status(404);
-    else res.json(chatHistory).status(200);
+    try {
+        const chatHistories = await ChatHistoryModel.find({ chat_id: req.params.chatId });
+        res.json(chatHistories).status(200);
+    }
+    catch (err) {
+        try {
+            await ChatModel.findById(req.params.chatId);
+            console.error("Error getting chat histories");
+        }
+        catch (err) {
+            console.error("Chat doesn't exist");
+            res.status(404).send("Invalid chat ID");
+        }
+    }
 }
 
 const addChat = async (req, res) => {
@@ -93,4 +99,4 @@ const deleteChat = async (req, res) => {
     }
 }
 
-export { getChats, getChat, addChat, deleteChat };
+export { getChats, addChat, deleteChat };
