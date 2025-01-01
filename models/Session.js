@@ -12,13 +12,13 @@ const Session = new Schema({
     },
     ip_address: {
         type: Schema.Types.String,
-        required: true,
-        default: ""
+        required: false,
+        default: "0.0.0.0"
     },
     user_agent: {
         type: Schema.Types.String,
-        required: true,
-        default: ""
+        required: false,
+        default: "Unknown"
     },
     created_at: {
         type: Schema.Types.Date,
