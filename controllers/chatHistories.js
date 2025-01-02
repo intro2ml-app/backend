@@ -19,7 +19,11 @@ const addChat = async (req, res) => {
         const model = await ModelModel.findOne({ _id: req.body.model_id });
 
         const stream = req.body.stream || false;
-        const response = await fetch("http://127.0.0.1:8000/query",
+        const msg = req.body.message;
+        if (Array.isArray(msg)) {
+            req.body.message = msg.join(" ");
+        }
+        const response = await fetch("http://192.168.0.41:8000/query",
             {
                 method: "POST",
                 headers: {
@@ -28,9 +32,6 @@ const addChat = async (req, res) => {
                 body: JSON.stringify({
                     query: req.body.message,
                     model: model.model_name,
-                    temperature: 0.7,
-                    top_p: 0.9,
-                    max_tokens: 100,
                     stream: stream,
                 })
             }
@@ -77,6 +78,8 @@ const addChat = async (req, res) => {
             res.json(chat).status(201);
         }
     } catch (err) {
+        console.log(err);
+        
         console.error("Error adding message");
         res.status(500).send("Error adding message");
     }
