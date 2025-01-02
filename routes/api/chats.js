@@ -1,18 +1,24 @@
 import express from "express";
 import ChatModel from "../../models/Chat.js";
+import UserModel from "../../models/User.js";
 
 const router = express.Router();
 
 router.get("/:userId", async (req, res) => {
-    const chats = await ChatModel.find({ user_id: req.params.userId });
-    res.json(chats).status(200);
+    try {
+        const chats = await ChatModel.find({ user_id: req.params.userId });
+        res.json(chats).status(200);
+    } catch (err) {
+        try {
+            await UserModel.findById(req.params.userId);
+            console.error("Error getting chats");
+        }
+        catch (err) {
+            console.error("User not found");
+            res.status(404).send("Invalid user ID");
+        }
+    }
 });
-
-// router.get("/:id", async (req, res) => {
-//     const chat = await ChatModel.find({ _id: req.params.id });
-//     if (!chat) res.send("Not found").status(404);
-//     else res.json(chat).status(200);
-// });
 
 router.post("/", async (req, res) => {
     try {

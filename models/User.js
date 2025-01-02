@@ -17,12 +17,10 @@ const User = new Schema({
     },
     created_at: {
         type: Schema.Types.Date,
-        required: true,
         default: Date.now
     },
     updated_at: {
         type: Schema.Types.Date,
-        required: true,
         default: Date.now
     }
 });

@@ -4,15 +4,14 @@ import ModelModel from "../../models/Model.js";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-    const models = await ModelModel.find();
-    res.json(models).status(200);
+    try {
+        const models = await ModelModel.find();
+        res.json(models).status(200);
+    } catch (err) {
+        console.error("Error getting models");
+        res.status(500).send("Error getting models");
+    }
 });
-
-// router.get("/:id", async (req, res) => {
-//     const model = await ModelModel.find({ _id: req.params.id });
-//     if (!model) res.send("Not found").status(404);
-//     else res.json(model).status(200);
-// });
 
 router.post("/", async (req, res) => {
     try {
