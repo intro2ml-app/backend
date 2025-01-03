@@ -88,6 +88,13 @@ npm start
                     "user_id": "user_id"
                 }
                 ```
+        - `PATCH /:id`: Update chat name by id
+            - Request body:
+                ```json
+                {
+                    "chat_name": "chat_name"
+                }
+                ```
         - `DELETE /:id`: Delete a chat by id
     - `/chatHistories`
         - `GET /:chatId`: Get all chats' messages by chat id
