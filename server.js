@@ -20,8 +20,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Connect to MongoDB and initialize models database
-connectDB();
-initModels();
+await connectDB();
+await initModels();
 
 // Initialize passport, session management
 app.use(
