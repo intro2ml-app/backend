@@ -43,7 +43,7 @@ const addChat = async (req, res) => {
             }
         );
 
-        generatingChatName(req.body.chat_id, req.body.message);
+        await generatingChatName(req.body.chat_id, req.body.message);
 
         if (stream) {
             res.setHeader('Content-Type', 'text/plain');

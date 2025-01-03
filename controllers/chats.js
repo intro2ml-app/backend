@@ -1,7 +1,8 @@
+import e from 'express';
 import ChatModel from '../models/Chat.js';
 import ChatHistoryModel from '../models/ChatHistory.js';
 
-export const generatingChatName = async (chat_id, message) => {
+const generatingChatName = async (chat_id, message) => {
   const chatHistories = await ChatHistoryModel.find({ chat_id: chat_id });
   if (chatHistories.length !== 0) return;
 
@@ -25,3 +26,5 @@ export const generatingChatName = async (chat_id, message) => {
     console.error('Error generating chat name');
   }
 };
+
+export { generatingChatName };
