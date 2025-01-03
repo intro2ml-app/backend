@@ -36,6 +36,23 @@ router.post("/", async (req, res) => {
     }
 });
 
+router.patch("/:id", async (req, res) => {
+    try {
+        const query = { _id: req.params.id };
+        const update = {
+            $set: {
+                chat_name: req.body.chat_name,
+                updated_at: new Date()
+            }
+        };
+        const chat = await ChatModel.updateOne(query, update);
+        res.json(chat).status(200);
+    } catch (err) {
+        console.error("Error updating chat");
+        res.status(500).send("Error updating chat");
+    }
+});
+
 router.delete("/:id", async (req, res) => {
     try {
         const query = { _id: req.params.id };

@@ -1,4 +1,3 @@
-import e from 'express';
 import ChatModel from '../models/Chat.js';
 import ChatHistoryModel from '../models/ChatHistory.js';
 
@@ -16,10 +15,15 @@ const generatingChatName = async (chat_id, message) => {
       body: JSON.stringify({
         query: message,
       }),
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => data.response);
+
     const update = {
-      chat_name: suggestedName.json().response,
-      updated_at: new Date(),
+      $set: {
+        chat_name: suggestedName,
+        updated_at: new Date(),
+      }
     };
     await ChatModel.updateOne(query, update);
   } catch (err) {
